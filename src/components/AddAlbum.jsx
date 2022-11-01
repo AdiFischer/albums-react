@@ -1,14 +1,14 @@
 import { useState } from "react"
 
-export default function AddAlbum(){
+export default function AddAlbum({setToggle, toggle}){// passing a func from parent = prop
     const [album, setAlbum] = useState('')
     const [artist, setArtist] = useState('')
     const [year, setYear] = useState(1970)
     const handleSubmit = (e) => {
         e.preventDefault()
-        //lets check to see that they enterd all data
+        //lets check to see that they entered all data
         if(!album || !artist || !year) {
-            alert('fillup')
+            alert('fill-up')
             return
         }
         const newAlbum = {artist, album, year}
@@ -21,6 +21,7 @@ export default function AddAlbum(){
         })
         .then( () => {
         //assume it works... (no .second then)
+        setToggle(!toggle)
         setAlbum('')
         setArtist('')
         setYear(1970)
